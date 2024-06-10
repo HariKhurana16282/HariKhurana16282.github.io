@@ -1,5 +1,6 @@
 // Function to open Add Spot screen
 function openAddSpot() {
+    localStorage.removeItem('currentSpot'); // Clear currentSpot when adding a new spot
     window.location.href = 'add.html';
 }
 
@@ -18,7 +19,7 @@ function saveSpot(event) {
     const currentSpotIndex = localStorage.getItem('currentSpot');
     const spots = JSON.parse(localStorage.getItem('spots')) || [];
 
-    if (currentSpotIndex !== null) {
+    if (currentSpotIndex !== null && currentSpotIndex !== "null") {
         // Edit existing spot
         const spot = spots[currentSpotIndex];
         if (imageInput.files.length > 0) {
@@ -29,6 +30,7 @@ function saveSpot(event) {
                 spot.rating = ratingInput.value;
                 spots[currentSpotIndex] = spot;
                 localStorage.setItem('spots', JSON.stringify(spots));
+                localStorage.removeItem('currentSpot'); // Clear currentSpot after saving
                 window.location.href = 'index.html';
             };
             reader.readAsDataURL(imageInput.files[0]);
@@ -37,6 +39,7 @@ function saveSpot(event) {
             spot.rating = ratingInput.value;
             spots[currentSpotIndex] = spot;
             localStorage.setItem('spots', JSON.stringify(spots));
+            localStorage.removeItem('currentSpot'); // Clear currentSpot after saving
             window.location.href = 'index.html';
         }
     } else {
@@ -103,21 +106,14 @@ function displaySpotDetails() {
 function editSpot(index) {
     localStorage.setItem('currentSpot', index);
     window.location.href = 'add.html';
-    document.getElementById('form-title').innerText = 'Edit Spot';
-    const spots = JSON.parse(localStorage.getItem('spots')) || [];
-    const spot = spots[index];
-    document.getElementById('review').value = spot.review;
-    document.getElementById('rating').value = spot.rating;
 }
 
 // Function to delete a spot
 function deleteSpot(index) {
-    if (confirm("Are you sure you want to delete this spot?")) {
-        const spots = JSON.parse(localStorage.getItem('spots')) || [];
-        spots.splice(index, 1);
-        localStorage.setItem('spots', JSON.stringify(spots));
-        window.location.href = 'index.html';
-    }
+    const spots = JSON.parse(localStorage.getItem('spots')) || [];
+    spots.splice(index, 1);
+    localStorage.setItem('spots', JSON.stringify(spots));
+    window.location.href = 'index.html';
 }
 
 // Event listeners for loading dashboard and spot details
@@ -128,7 +124,7 @@ window.onload = function () {
         displaySpotDetails();
     } else if (document.getElementById('add-spot-form')) {
         const currentSpotIndex = localStorage.getItem('currentSpot');
-        if (currentSpotIndex !== null) {
+        if (currentSpotIndex !== null && currentSpotIndex !== "null") {
             const spots = JSON.parse(localStorage.getItem('spots')) || [];
             const spot = spots[currentSpotIndex];
             document.getElementById('review').value = spot.review;
