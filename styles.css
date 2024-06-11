@@ -1,3 +1,7 @@
+/* styles.css */
+
+/* Existing styles */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,7 +10,7 @@ body {
 }
 
 header {
-    background-color: #4CAF50;
+    background-color: #3f42dc;
     color: white;
     text-align: center;
     padding: 1em;
@@ -49,4 +53,19 @@ input, textarea {
 .spot img {
     max-width: 100px;
     max-height: 100px;
+}
+
+.spot img, #spot-details img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+/* New styles for responsive image */
+
+#spot-details img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }

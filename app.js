@@ -1,22 +1,21 @@
-//function to open Add Spot screen
+// Function to open Add Spot screen
 function openAddSpot() {
     localStorage.removeItem('currentSpot'); // Clear currentSpot when adding a new spot
     window.location.href = 'add.html';
 }
 
-//function to go back to the previous screen
+// Function to go back to the previous screen
 function goBack() {
     window.history.back();
 }
 
-//function to save a new spot
+// Function to save a new spot
 function saveSpot(event) {
     event.preventDefault();
     const imageInput = document.getElementById('image');
     const reviewInput = document.getElementById('review');
     const ratingInput = document.getElementById('rating');
 
-<<<<<<< HEAD
     const currentSpotIndex = localStorage.getItem('currentSpot');
     const spots = JSON.parse(localStorage.getItem('spots')) || [];
 
@@ -31,7 +30,7 @@ function saveSpot(event) {
                 spot.rating = ratingInput.value;
                 spots[currentSpotIndex] = spot;
                 localStorage.setItem('spots', JSON.stringify(spots));
-                localStorage.removeItem('currentSpot'); //clear currentSpot after saving
+                localStorage.removeItem('currentSpot'); // Clear currentSpot after saving
                 window.location.href = 'index.html';
             };
             reader.readAsDataURL(imageInput.files[0]);
@@ -40,7 +39,7 @@ function saveSpot(event) {
             spot.rating = ratingInput.value;
             spots[currentSpotIndex] = spot;
             localStorage.setItem('spots', JSON.stringify(spots));
-            localStorage.removeItem('currentSpot'); //clear currentSpot after saving
+            localStorage.removeItem('currentSpot'); // Clear currentSpot after saving
             window.location.href = 'index.html';
         }
     } else {
@@ -55,24 +54,12 @@ function saveSpot(event) {
             spots.push(newSpot);
             localStorage.setItem('spots', JSON.stringify(spots));
             window.location.href = 'index.html';
-=======
-    const reader = new FileReader();
-    reader.onload = function() {
-        const spots = JSON.parse(localStorage.getItem('spots')) || [];
-        const newSpot = {
-            image: reader.result,
-            review: reviewInput.value,
-            rating: ratingInput.value
->>>>>>> parent of 49d71a4 (Add files via upload)
         };
-        spots.push(newSpot);
-        localStorage.setItem('spots', JSON.stringify(spots));
-        window.location.href = 'index.html';
-    };
-    reader.readAsDataURL(imageInput.files[0]);
+        reader.readAsDataURL(imageInput.files[0]);
+    }
 }
 
-//function to display spots in the dashboard
+// Function to display spots in the dashboard
 function displaySpots() {
     const dashboard = document.getElementById('dashboard');
     const spots = JSON.parse(localStorage.getItem('spots')) || [];
@@ -89,13 +76,13 @@ function displaySpots() {
     });
 }
 
-//function to view details of a spot
+// Function to view details of a spot
 function viewDetails(index) {
     localStorage.setItem('currentSpot', index);
     window.location.href = 'detail.html';
 }
 
-//function to display spot details
+// Function to display spot details
 function displaySpotDetails() {
     const spotDetails = document.getElementById('spot-details');
     const index = localStorage.getItem('currentSpot');
@@ -106,7 +93,6 @@ function displaySpotDetails() {
         <p>${spot.review}</p>
         <p>Rating: ${spot.rating}</p>
     `;
-<<<<<<< HEAD
 
     document.getElementById('edit-spot').onclick = function () {
         editSpot(index);
@@ -116,33 +102,30 @@ function displaySpotDetails() {
     };
 }
 
-//function to edit a spot
+// Function to edit a spot
 function editSpot(index) {
     localStorage.setItem('currentSpot', index);
     window.location.href = 'add.html';
 }
 
-//function to delete a spot
+// Function to delete a spot with confirmation
 function deleteSpot(index) {
-    const spots = JSON.parse(localStorage.getItem('spots')) || [];
-    spots.splice(index, 1);
-    localStorage.setItem('spots', JSON.stringify(spots));
-    window.location.href = 'index.html';
+    const confirmation = confirm("Are you sure you want to delete this spot?");
+    if (confirmation) {
+        const spots = JSON.parse(localStorage.getItem('spots')) || [];
+        spots.splice(index, 1);
+        localStorage.setItem('spots', JSON.stringify(spots));
+        window.location.href = 'index.html';
+    }
 }
 
-//event listeners for loading dashboard and spot details
-window.onload = function () {
-=======
-}
 
 // Event listeners for loading dashboard and spot details
-window.onload = function() {
->>>>>>> parent of 49d71a4 (Add files via upload)
+window.onload = function () {
     if (document.getElementById('dashboard')) {
         displaySpots();
     } else if (document.getElementById('spot-details')) {
         displaySpotDetails();
-<<<<<<< HEAD
     } else if (document.getElementById('add-spot-form')) {
         const currentSpotIndex = localStorage.getItem('currentSpot');
         if (currentSpotIndex !== null && currentSpotIndex !== "null") {
@@ -151,7 +134,5 @@ window.onload = function() {
             document.getElementById('review').value = spot.review;
             document.getElementById('rating').value = spot.rating;
         }
-=======
->>>>>>> parent of 49d71a4 (Add files via upload)
     }
 };
