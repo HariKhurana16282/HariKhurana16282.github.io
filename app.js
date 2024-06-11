@@ -1,15 +1,15 @@
-// Function to open Add Spot screen
+//function to open Add Spot screen
 function openAddSpot() {
     localStorage.removeItem('currentSpot'); // Clear currentSpot when adding a new spot
     window.location.href = 'add.html';
 }
 
-// Function to go back to the previous screen
+//function to go back to the previous screen
 function goBack() {
     window.history.back();
 }
 
-// Function to save a new spot
+//function to save a new spot
 function saveSpot(event) {
     event.preventDefault();
     const imageInput = document.getElementById('image');
@@ -30,7 +30,7 @@ function saveSpot(event) {
                 spot.rating = ratingInput.value;
                 spots[currentSpotIndex] = spot;
                 localStorage.setItem('spots', JSON.stringify(spots));
-                localStorage.removeItem('currentSpot'); // Clear currentSpot after saving
+                localStorage.removeItem('currentSpot'); //clear currentSpot after saving
                 window.location.href = 'index.html';
             };
             reader.readAsDataURL(imageInput.files[0]);
@@ -39,7 +39,7 @@ function saveSpot(event) {
             spot.rating = ratingInput.value;
             spots[currentSpotIndex] = spot;
             localStorage.setItem('spots', JSON.stringify(spots));
-            localStorage.removeItem('currentSpot'); // Clear currentSpot after saving
+            localStorage.removeItem('currentSpot'); //clear currentSpot after saving
             window.location.href = 'index.html';
         }
     } else {
