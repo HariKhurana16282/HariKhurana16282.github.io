@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add/Edit Spot</title>
+    <title>Add New Spot</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1 id="form-title">Add New Spot</h1>
+        <h1>Add New Spot</h1>
         <button onclick="goBack()">Back</button>
     </header>
     <main>
         <form id="add-spot-form" onsubmit="saveSpot(event)">
-            <input type="file" accept="image/*" id="image">
+            <input type="file" accept="image/*" id="image" required>
             <textarea id="review" placeholder="Write your review" required></textarea>
             <input type="number" id="rating" min="1" max="5" placeholder="Rating" required>
             <button type="submit">Save Spot</button>

@@ -16,6 +16,7 @@ function saveSpot(event) {
     const reviewInput = document.getElementById('review');
     const ratingInput = document.getElementById('rating');
 
+<<<<<<< HEAD
     const currentSpotIndex = localStorage.getItem('currentSpot');
     const spots = JSON.parse(localStorage.getItem('spots')) || [];
 
@@ -54,9 +55,21 @@ function saveSpot(event) {
             spots.push(newSpot);
             localStorage.setItem('spots', JSON.stringify(spots));
             window.location.href = 'index.html';
+=======
+    const reader = new FileReader();
+    reader.onload = function() {
+        const spots = JSON.parse(localStorage.getItem('spots')) || [];
+        const newSpot = {
+            image: reader.result,
+            review: reviewInput.value,
+            rating: ratingInput.value
+>>>>>>> parent of 49d71a4 (Add files via upload)
         };
-        reader.readAsDataURL(imageInput.files[0]);
-    }
+        spots.push(newSpot);
+        localStorage.setItem('spots', JSON.stringify(spots));
+        window.location.href = 'index.html';
+    };
+    reader.readAsDataURL(imageInput.files[0]);
 }
 
 //function to display spots in the dashboard
@@ -93,6 +106,7 @@ function displaySpotDetails() {
         <p>${spot.review}</p>
         <p>Rating: ${spot.rating}</p>
     `;
+<<<<<<< HEAD
 
     document.getElementById('edit-spot').onclick = function () {
         editSpot(index);
@@ -118,10 +132,17 @@ function deleteSpot(index) {
 
 //event listeners for loading dashboard and spot details
 window.onload = function () {
+=======
+}
+
+// Event listeners for loading dashboard and spot details
+window.onload = function() {
+>>>>>>> parent of 49d71a4 (Add files via upload)
     if (document.getElementById('dashboard')) {
         displaySpots();
     } else if (document.getElementById('spot-details')) {
         displaySpotDetails();
+<<<<<<< HEAD
     } else if (document.getElementById('add-spot-form')) {
         const currentSpotIndex = localStorage.getItem('currentSpot');
         if (currentSpotIndex !== null && currentSpotIndex !== "null") {
@@ -130,5 +151,7 @@ window.onload = function () {
             document.getElementById('review').value = spot.review;
             document.getElementById('rating').value = spot.rating;
         }
+=======
+>>>>>>> parent of 49d71a4 (Add files via upload)
     }
 };
