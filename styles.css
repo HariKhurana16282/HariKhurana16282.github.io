@@ -1,7 +1,3 @@
-/* styles.css */
-
-/* Existing styles */
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -60,8 +56,6 @@ input, textarea {
     height: 300px;
     object-fit: cover;
 }
-
-/* New styles for responsive image */
 
 #spot-details img {
     max-width: 100%;
