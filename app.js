@@ -59,7 +59,7 @@ function saveSpot(event) {
     }
 }
 
-// Function to display spots in the dashboard
+//function to display spots in the dashboard
 function displaySpots() {
     const dashboard = document.getElementById('dashboard');
     const spots = JSON.parse(localStorage.getItem('spots')) || [];
@@ -76,13 +76,13 @@ function displaySpots() {
     });
 }
 
-// Function to view details of a spot
+//function to view details of a spot
 function viewDetails(index) {
     localStorage.setItem('currentSpot', index);
     window.location.href = 'detail.html';
 }
 
-// Function to display spot details
+//function to display spot details
 function displaySpotDetails() {
     const spotDetails = document.getElementById('spot-details');
     const index = localStorage.getItem('currentSpot');
@@ -102,13 +102,13 @@ function displaySpotDetails() {
     };
 }
 
-// Function to edit a spot
+//function to edit a spot
 function editSpot(index) {
     localStorage.setItem('currentSpot', index);
     window.location.href = 'add.html';
 }
 
-// Function to delete a spot
+//function to delete a spot
 function deleteSpot(index) {
     const spots = JSON.parse(localStorage.getItem('spots')) || [];
     spots.splice(index, 1);
@@ -116,7 +116,7 @@ function deleteSpot(index) {
     window.location.href = 'index.html';
 }
 
-// Event listeners for loading dashboard and spot details
+//event listeners for loading dashboard and spot details
 window.onload = function () {
     if (document.getElementById('dashboard')) {
         displaySpots();
